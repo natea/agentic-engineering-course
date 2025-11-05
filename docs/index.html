@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Engineering Course | 5-Week Professional Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--gradient);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-item svg {
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
+        }
+
+        /* Course Overview */
+        .overview {
+            background: white;
+            padding: 60px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .overview-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .overview h2 {
+            font-size: 2.5em;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .overview p {
+            font-size: 1.2em;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .requirements {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .requirement-card {
+            background: var(--bg-light);
+            padding: 20px 30px;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .requirement-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Modules Section */
+        .modules {
+            padding: 80px 0;
+        }
+
+        .modules h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--text-dark);
+            margin-bottom: 60px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            transform: translateX(-50%);
+        }
+
+        .module {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .module:nth-child(1) { animation-delay: 0.1s; }
+        .module:nth-child(2) { animation-delay: 0.2s; }
+        .module:nth-child(3) { animation-delay: 0.3s; }
+        .module:nth-child(4) { animation-delay: 0.4s; }
+        .module:nth-child(5) { animation-delay: 0.5s; }
+
+        .module-date {
+            flex: 0 0 45%;
+            text-align: right;
+            padding-right: 40px;
+        }
+
+        .module-content {
+            flex: 0 0 45%;
+            padding-left: 40px;
+        }
+
+        .module:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .module:nth-child(even) .module-date {
+            text-align: left;
+            padding-right: 0;
+            padding-left: 40px;
+        }
+
+        .module:nth-child(even) .module-content {
+            padding-left: 0;
+            padding-right: 40px;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .date-time {
+            color: var(--text-light);
+            font-size: 0.9em;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            top: 20px;
+        }
+
+        .module:nth-child(odd) .module-card::before {
+            left: -50px;
+        }
+
+        .module:nth-child(even) .module-card::before {
+            right: -50px;
+        }
+
+        .module-number {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .module-title {
+            font-size: 1.5em;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .module-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .module-deliverable {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .module-deliverable strong {
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gradient);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .module {
+                flex-direction: column !important;
+                margin-bottom: 40px;
+            }
+
+            .module-date,
+            .module-content,
+            .module:nth-child(even) .module-date,
+            .module:nth-child(even) .module-content {
+                flex: 1;
+                text-align: left;
+                padding-left: 60px;
+                padding-right: 20px;
+            }
+
+            .module-card::before {
+                left: -40px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Agentic Engineering</h1>
+                <p class="subtitle">Building AI-Powered Applications</p>
+                <div class="course-info">
+                    <div class="info-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM10 12a1 1 0 01-1-1V7a1 1 0 112 0v4a1 1 0 01-1 1z"/>
+                        </svg>
+                        <span>5 Weeks</span>
+                    </div>
+                    <div class="info-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"/>
+                        </svg>
+                        <span>Thursdays 6-8 PM</span>
+                    </div>
+                    <div class="info-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+                        </svg>
+                        <span>Venture Lane, Boston</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overview -->
+    <section class="overview">
+        <div class="container">
+            <div class="overview-content">
+                <h2>Transform from Coder to AI Orchestrator</h2>
+                <p>Stop writing boilerplate code. Learn to orchestrate AI agents that build production-ready applications in hours, not weeks. This hands-on course teaches you spec-driven development, agent memory systems, and production deployment patterns.</p>
+                
+                <div class="requirements">
+                    <div class="requirement-card">
+                        <h3>Prerequisites</h3>
+                        <p>2+ years programming experience</p>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Requirements</h3>
+                        <p>VSCode + Claude Pro ($50 credits)</p>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Format</h3>
+                        <p>30min instruction + 90min hands-on</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules -->
+    <section class="modules">
+        <div class="container">
+            <h2>5-Week Journey</h2>
+            <div class="timeline">
+                <!-- Module 1 -->
+                <div class="module">
+                    <div class="module-date">
+                        <div class="date-badge">November 6</div>
+                        <div class="date-time">Thursday, 6:00-8:00 PM</div>
+                    </div>
+                    <div class="module-content">
+                        <div class="module-card">
+                            <div class="module-number">1</div>
+                            <h3 class="module-title">Introduction to Agentic Engineering</h3>
+                            <p class="module-description">
+                                Master spec-driven development. Write specifications that AI transforms into working code. Learn the fundamental shift from writing code to orchestrating AI agents.
+                            </p>
+                            <div class="module-deliverable">
+                                <strong>Deliverable:</strong>
+                                Working REST API with authentication built entirely through specifications
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module">
+                    <div class="module-date">
+                        <div class="date-badge">November 20</div>
+                        <div class="date-time">Thursday, 6:00-8:00 PM</div>
+                    </div>
+                    <div class="module-content">
+                        <div class="module-card">
+                            <div class="module-number">2</div>
+                            <h3 class="module-title">Development Environment & Agent Memory</h3>
+                            <p class="module-description">
+                                Configure Claude Flow with persistent memory. Teach agents your patterns once, and they remember forever. Build consistent multi-service applications.
+                            </p>
+                            <div class="module-deliverable">
+                                <strong>Deliverable:</strong>
+                                Multi-service project with consistent patterns through agent memory
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="module">
+                    <div class="module-date">
+                        <div class="date-badge">December 4</div>
+                        <div class="date-time">Thursday, 6:00-8:00 PM</div>
+                    </div>
+                    <div class="module-content">
+                        <div class="module-card">
+                            <div class="module-number">3</div>
+                            <h3 class="module-title">Finding and Creating Skills</h3>
+                            <p class="module-description">
+                                Extend AI capabilities with specialized skills. Add browser testing, API monitoring, and custom domain expertise. Transform Claude into your domain-specific expert.
+                            </p>
+                            <div class="module-deliverable">
+                                <strong>Deliverable:</strong>
+                                Custom skills and comprehensive E2E testing with Playwright
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="module">
+                    <div class="module-date">
+                        <div class="date-badge">December 11</div>
+                        <div class="date-time">Thursday, 6:00-8:00 PM</div>
+                    </div>
+                    <div class="module-content">
+                        <div class="module-card">
+                            <div class="module-number">4</div>
+                            <h3 class="module-title">Quality Engineering & Production Readiness</h3>
+                            <p class="module-description">
+                                Bridge the gap from prototype to production. Add monitoring, error handling, and deployment automation. Launch your app with a real URL for real users.
+                            </p>
+                            <div class="module-deliverable">
+                                <strong>Deliverable:</strong>
+                                Production-deployed app with monitoring and 80%+ test coverage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="module">
+                    <div class="module-date">
+                        <div class="date-badge">December 18</div>
+                        <div class="date-time">Thursday, 6:00-8:00 PM</div>
+                    </div>
+                    <div class="module-content">
+                        <div class="module-card">
+                            <div class="module-number">5</div>
+                            <h3 class="module-title">Demo Day & Showcase</h3>
+                            <p class="module-description">
+                                Present your AI-built application to peers and industry professionals. Share metrics, learnings, and demonstrate how you built a production app in just 10 hours.
+                            </p>
+                            <div class="module-deliverable">
+                                <strong>Deliverable:</strong>
+                                5-minute demo of your production application with metrics
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to 10x Your Development Speed?</h2>
+            <p>Join us at <a href="https://fractal.boston">Fractal Boston University</a> this November and transform how you build software.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf28uZ9rWSkm8pjP3h90q5UMnCS5yBRHeqvGrcoVqRy-_y4Jg/viewform" class="cta-button">Apply Now</a>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.module').forEach(el => {
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(20px)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
