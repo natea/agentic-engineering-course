@@ -71,9 +71,24 @@
         .subtitle {
             font-size: 1.5em;
             font-weight: 300;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             opacity: 0.95;
             animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.3s both;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
         }
 
         .course-info {
@@ -81,7 +96,7 @@
             justify-content: center;
             gap: 40px;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.4s both;
+            animation: fadeInUp 0.8s ease 0.5s both;
         }
 
         .info-item {
@@ -95,6 +110,30 @@
             width: 24px;
             height: 24px;
             opacity: 0.8;
+        }
+
+        .header-cta {
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .header-apply-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-apply-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         /* Course Overview */
@@ -145,6 +184,16 @@
             font-size: 1.1em;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .pricing-card strong {
+            color: var(--primary-dark);
+            font-size: 1.4em;
         }
 
         /* Modules Section */
@@ -362,6 +411,108 @@
             }
         }
 
+        /* Topics Section */
+        .topics {
+            background: white;
+            padding: 80px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .topics h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .topics-intro {
+            text-align: center;
+            font-size: 1.2em;
+            color: var(--text-light);
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .topics-intro strong {
+            color: var(--primary);
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .topic-category {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .topic-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-category h3 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topic-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .topic-category li {
+            color: var(--text-dark);
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .topic-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .distinction-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .distinction-box h4 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        .distinction-box p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .distinction-box strong {
+            color: var(--primary-dark);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -404,7 +555,8 @@
         <div class="container">
             <div class="header-content">
                 <h1>Agentic Engineering</h1>
-                <p class="subtitle">Building AI-Powered Applications</p>
+                <p class="subtitle">Command AI Agents to Build Your Applications</p>
+                <p class="tagline">Use swarms of AI agents as your development team. Ship production code without writing it.</p>
                 <div class="course-info">
                     <div class="info-item">
                         <svg fill="currentColor" viewBox="0 0 20 20">
@@ -422,8 +574,18 @@
                         <svg fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
                         </svg>
-                        <span>Venture Lane, Boston</span>
+                        <span><a href="https://maps.app.goo.gl/7fofPb2Nunj6M3159" target="_blank" style="color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.5);">Venture Lane</a>, Boston</span>
                     </div>
+                    <div class="info-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>$500 Investment</span>
+                    </div>
+                </div>
+                <div class="header-cta">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf28uZ9rWSkm8pjP3h90q5UMnCS5yBRHeqvGrcoVqRy-_y4Jg/viewform" target="_blank" class="header-apply-button">Apply Now</a>
                 </div>
             </div>
         </div>
@@ -434,7 +596,7 @@
         <div class="container">
             <div class="overview-content">
                 <h2>Transform from Coder to AI Orchestrator</h2>
-                <p>Stop writing boilerplate code. Learn to orchestrate AI agents that build production-ready applications in hours, not weeks. This hands-on course teaches you spec-driven development, agent memory systems, and production deployment patterns.</p>
+                <p>Stop writing boilerplate code. Learn to orchestrate AI agents that build production-ready applications in hours, not weeks. Master the Claude toolchain including swarms, agent memory, and custom skills.</p>
                 
                 <div class="requirements">
                     <div class="requirement-card">
@@ -443,13 +605,73 @@
                     </div>
                     <div class="requirement-card">
                         <h3>Requirements</h3>
-                        <p>VSCode + Claude Pro ($50 credits)</p>
+                        <p>VSCode + Claude Pro/Max (or min $50 API credits)</p>
                     </div>
                     <div class="requirement-card">
                         <h3>Format</h3>
                         <p>30min instruction + 90min hands-on</p>
                     </div>
+                    <div class="requirement-card pricing-card">
+                        <h3>Investment</h3>
+                        <p><strong>$500</strong> for 5 weeks of instruction and hands-on experience</p>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section class="topics">
+        <div class="container">
+            <h2>What You'll Master</h2>
+            <p class="topics-intro">Build applications <strong>using AI agents</strong> as your development team. Learn to orchestrate, not just prompt.</p>
+            
+            <div class="topics-grid">
+                <div class="topic-category">
+                    <h3>🚀 Core Concepts</h3>
+                    <ul>
+                        <li>Agentic Engineering Paradigm</li>
+                        <li>Spec-Driven Development</li>
+                        <li>Developer as Orchestrator</li>
+                        <li>Agentic Workflow: Specify → Generate → Review → Deploy</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-category">
+                    <h3>🛠️ Claude Toolchain</h3>
+                    <ul>
+                        <li>Claude Code & Claude Flow</li>
+                        <li>Swarms (Multi-Agent Orchestration)</li>
+                        <li>Agent Memory Systems</li>
+                        <li>NPX Command-Line Automation</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-category">
+                    <h3>🎯 Advanced Features</h3>
+                    <ul>
+                        <li>Skills (Agent Plugins)</li>
+                        <li>Custom Skill Creation</li>
+                        <li>Pattern Governance</li>
+                        <li>Persistent Learning</li>
+                    </ul>
+                </div>
+                
+                <div class="topic-category">
+                    <h3>🏭 Production Engineering</h3>
+                    <ul>
+                        <li>AgenticQE (Quality Engineering)</li>
+                        <li>AI-Generated Testing (Unit/E2E)</li>
+                        <li>Monitoring & Error Handling</li>
+                        <li>Security & Rate Limiting</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="distinction-box">
+                <h4>Important Distinction</h4>
+                <p><strong>Apps Built BY Agents:</strong> Using AI as your development team to build traditional applications (what this course teaches)</p>
+                <p><strong>Apps That EMPLOY Agents:</strong> Applications with embedded AI agents for end users (future course topic)</p>
             </div>
         </div>
     </section>
@@ -457,7 +679,7 @@
     <!-- Modules -->
     <section class="modules">
         <div class="container">
-            <h2>5-Week Journey</h2>
+            <h2>5-Week Technical Journey</h2>
             <div class="timeline">
                 <!-- Module 1 -->
                 <div class="module">
@@ -468,13 +690,13 @@
                     <div class="module-content">
                         <div class="module-card">
                             <div class="module-number">1</div>
-                            <h3 class="module-title">Introduction to Agentic Engineering</h3>
+                            <h3 class="module-title">Spec-Driven Development & Claude Toolchain</h3>
                             <p class="module-description">
-                                Master spec-driven development. Write specifications that AI transforms into working code. Learn the fundamental shift from writing code to orchestrating AI agents.
+                                Master the agentic workflow: Specify → Generate → Review → Deploy. Learn Claude Code fundamentals and build your first AI-orchestrated application through specifications alone.
                             </p>
                             <div class="module-deliverable">
-                                <strong>Deliverable:</strong>
-                                Working REST API with authentication built entirely through specifications
+                                <strong>Build:</strong>
+                                REST API with JWT auth using only specifications and Claude Code
                             </div>
                         </div>
                     </div>
@@ -489,13 +711,13 @@
                     <div class="module-content">
                         <div class="module-card">
                             <div class="module-number">2</div>
-                            <h3 class="module-title">Development Environment & Agent Memory</h3>
+                            <h3 class="module-title">Swarms & Agent Memory Systems</h3>
                             <p class="module-description">
-                                Configure Claude Flow with persistent memory. Teach agents your patterns once, and they remember forever. Build consistent multi-service applications.
+                                Deploy Claude Flow swarms for multi-agent orchestration. Implement persistent memory so agents remember your patterns, ensuring consistency across your entire codebase.
                             </p>
                             <div class="module-deliverable">
-                                <strong>Deliverable:</strong>
-                                Multi-service project with consistent patterns through agent memory
+                                <strong>Build:</strong>
+                                Multi-service architecture with pattern governance via agent memory
                             </div>
                         </div>
                     </div>
@@ -510,13 +732,13 @@
                     <div class="module-content">
                         <div class="module-card">
                             <div class="module-number">3</div>
-                            <h3 class="module-title">Finding and Creating Skills</h3>
+                            <h3 class="module-title">Skills & Custom Plugin Development</h3>
                             <p class="module-description">
-                                Extend AI capabilities with specialized skills. Add browser testing, API monitoring, and custom domain expertise. Transform Claude into your domain-specific expert.
+                                Extend Claude with skills—installable agent plugins. Master Playwright MCP for browser automation, explore AgenticQE skills, and create custom domain-specific capabilities.
                             </p>
                             <div class="module-deliverable">
-                                <strong>Deliverable:</strong>
-                                Custom skills and comprehensive E2E testing with Playwright
+                                <strong>Build:</strong>
+                                Custom skills and automated E2E testing with Playwright integration
                             </div>
                         </div>
                     </div>
@@ -531,13 +753,13 @@
                     <div class="module-content">
                         <div class="module-card">
                             <div class="module-number">4</div>
-                            <h3 class="module-title">Quality Engineering & Production Readiness</h3>
+                            <h3 class="module-title">Production Engineering with AgenticQE</h3>
                             <p class="module-description">
-                                Bridge the gap from prototype to production. Add monitoring, error handling, and deployment automation. Launch your app with a real URL for real users.
+                                Transform prototypes into production systems. Implement AI-generated monitoring, error handling, security, and rate limiting. Deploy with CI/CD automation via GitHub Actions.
                             </p>
                             <div class="module-deliverable">
-                                <strong>Deliverable:</strong>
-                                Production-deployed app with monitoring and 80%+ test coverage
+                                <strong>Build:</strong>
+                                Production-deployed app with 80%+ test coverage and live monitoring
                             </div>
                         </div>
                     </div>
@@ -552,13 +774,13 @@
                     <div class="module-content">
                         <div class="module-card">
                             <div class="module-number">5</div>
-                            <h3 class="module-title">Demo Day & Showcase</h3>
+                            <h3 class="module-title">Demo Day: Agentic Engineering Showcase</h3>
                             <p class="module-description">
-                                Present your AI-built application to peers and industry professionals. Share metrics, learnings, and demonstrate how you built a production app in just 10 hours.
+                                Present your production application built entirely through agent orchestration. Demonstrate metrics showing 10x development speed and share learnings with peers and industry professionals.
                             </p>
                             <div class="module-deliverable">
-                                <strong>Deliverable:</strong>
-                                5-minute demo of your production application with metrics
+                                <strong>Present:</strong>
+                                Live demo with metrics proving agentic development efficiency
                             </div>
                         </div>
                     </div>
@@ -570,9 +792,9 @@
     <!-- CTA -->
     <section class="cta">
         <div class="container">
-            <h2>Ready to 10x Your Development Speed?</h2>
-            <p>Join us at <a href="https://fractal.boston">Fractal Boston University</a> this November and transform how you build software.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf28uZ9rWSkm8pjP3h90q5UMnCS5yBRHeqvGrcoVqRy-_y4Jg/viewform" class="cta-button">Apply Now</a>
+            <h2>Ready to Command AI Agent Swarms?</h2>
+            <p>Master the Claude toolchain. Build production apps in hours. Join the agentic revolution.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf28uZ9rWSkm8pjP3h90q5UMnCS5yBRHeqvGrcoVqRy-_y4Jg/viewform" target="_blank" class="cta-button">Apply Now - Limited to 20 Developers</a>
         </div>
     </section>
 
