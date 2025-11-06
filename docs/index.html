@@ -612,6 +612,33 @@
             border-bottom-color: var(--primary);
         }
 
+        /* Footer Section */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary);
+            border-bottom-color: white;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -935,6 +962,13 @@
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSf28uZ9rWSkm8pjP3h90q5UMnCS5yBRHeqvGrcoVqRy-_y4Jg/viewform" target="_blank" class="cta-button">Apply Now - Limited to 20 Developers</a>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p><a href="https://fractalboston.substack.com/p/learn-more-stuff-with-friends" target="_blank">Learn with friends at Fractal University</a></p>
+        </div>
+    </footer>
 
     <script>
         // Add smooth scroll behavior
