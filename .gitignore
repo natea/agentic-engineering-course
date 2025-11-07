@@ -5,3 +5,5 @@ dist/
 *.db-journal
 coverage/
 .DS_Store
+
+/src/generated/prisma

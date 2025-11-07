@@ -4,5 +4,5 @@ export function isValidEmail(email: string): boolean {
 }
 
 export function isValidPassword(password: string): boolean {
-  return password && password.length >= 6;
+  return Boolean(password && password.length >= 6);
 }
