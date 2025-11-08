@@ -14,3 +14,52 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model Message {
+  id                Int           @id @default(autoincrement())
+  imessageId        String        @unique
+  chatId            String
+  senderId          String
+  senderName        String?
+  text              String?
+  attachments       String?
+  sentAt            DateTime
+  syncedAt          DateTime      @default(now())
+  processedForPost  Boolean       @default(false)
+  posts             PostMessage[]
+
+  @@index([chatId, sentAt])
+  @@index([processedForPost])
+}
+
+model BlogPost {
+  id              Int           @id @default(autoincrement())
+  title           String
+  content         String
+  status          PostStatus    @default(DRAFT)
+  threadStartTime DateTime
+  threadEndTime   DateTime
+  messageCount    Int
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  publishedAt     DateTime?
+  messages        PostMessage[]
+
+  @@index([status, createdAt])
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model PostMessage {
+  id        Int       @id @default(autoincrement())
+  postId    Int
+  messageId Int
+  post      BlogPost  @relation(fields: [postId], references: [id], onDelete: Cascade)
+  message   Message   @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, messageId])
+}
