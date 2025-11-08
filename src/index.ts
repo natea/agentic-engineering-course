@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
 import { blogRouter } from './routes/blog';
 import { syncRouter } from './routes/sync';
+import { scheduledTaskService } from './services/scheduledTaskService';
 
 // Load environment variables
 dotenv.config();
@@ -26,6 +27,10 @@ app.get('/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+
+  // Start scheduled job
+  scheduledTaskService.startScheduledJob();
+  console.log('Scheduled job initialized');
 });
 
 export default app;
