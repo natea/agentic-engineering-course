@@ -16,9 +16,10 @@ describe('blogPostService', () => {
 
   describe('createDraftPost', () => {
     it('should create a draft blog post', async () => {
+      const uniqueId = `test-${Date.now()}-${Math.random()}`;
       const message = await prisma.message.create({
         data: {
-          imessageId: 'test-1',
+          imessageId: uniqueId,
           chatId: 'chat-1',
           senderId: 'sender-1',
           text: 'Test message',
