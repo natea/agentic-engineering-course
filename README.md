@@ -243,3 +243,121 @@ Students can extend this system to learn more:
 ## License
 
 MIT
+
+---
+
+# iMessage Blog Platform
+
+## Overview
+
+Automated blogging platform that syncs iMessage conversations, uses Claude AI to generate summaries, and provides a web UI for reviewing and publishing blog posts.
+
+## Features
+
+- Automatic message sync from iMessage database
+- AI-powered conversation summaries via Claude
+- Time-based thread detection
+- Draft approval workflow
+- Web UI for managing posts
+- Scheduled background jobs
+- Rate limiting and error handling
+
+## Setup
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure environment variables
+
+Add your Anthropic API key to `.env`:
+
+```
+ANTHROPIC_API_KEY=sk-ant-your-key-here
+SYNC_SCHEDULE="0 2 * * *"
+THREAD_GAP_HOURS="2"
+MAX_THREADS_PER_RUN="10"
+PRIVACY_MODE="false"
+```
+
+### 3. Run database migrations
+
+```bash
+npm run migrate
+```
+
+### 4. Start the server
+
+```bash
+npm run dev
+```
+
+## Usage
+
+### Web UI
+
+- **Dashboard:** http://localhost:3000 - View stats and trigger manual operations
+- **Drafts:** http://localhost:3000/drafts.html - Review and edit draft posts
+- **Published:** http://localhost:3000/posts.html - View published posts
+
+### API Endpoints
+
+**Blog Management:**
+- `GET /api/blog/posts` - List posts (filter by status)
+- `GET /api/blog/posts/:id` - Get post with source messages
+- `PUT /api/blog/posts/:id` - Update draft post
+- `POST /api/blog/posts/:id/publish` - Publish draft
+- `DELETE /api/blog/posts/:id` - Delete draft
+- `POST /api/blog/posts/:id/archive` - Archive published post
+
+**Manual Operations:**
+- `POST /api/sync/trigger` - Manually sync messages
+- `POST /api/sync/generate` - Manually generate drafts
+- `GET /api/sync/status` - Get sync status
+
+## Configuration
+
+Configure via environment variables in `.env`:
+
+- `ANTHROPIC_API_KEY` - Claude API key (required)
+- `SYNC_SCHEDULE` - Cron schedule (default: `0 2 * * *` = 2am daily)
+- `THREAD_GAP_HOURS` - Time gap for thread detection (default: 2)
+- `MAX_THREADS_PER_RUN` - Max threads to process per job (default: 10)
+- `PRIVACY_MODE` - Scrub phone/email from summaries (default: false)
+
+## Testing
+
+Run tests:
+```bash
+npm test
+```
+
+Run with coverage:
+```bash
+npm test -- --coverage
+```
+
+## Architecture
+
+- **Services:** Business logic (sync, AI, blog post management)
+- **Routes:** REST API endpoints
+- **Web UI:** Simple Bootstrap interface
+- **Scheduled Jobs:** Automated sync and generation via node-cron
+
+## Troubleshooting
+
+**iMessage sync not working:**
+- Ensure you're on macOS
+- Grant Full Disk Access to Terminal in System Preferences
+- Close Messages app before syncing
+
+**AI generation failing:**
+- Check ANTHROPIC_API_KEY is set correctly
+- Verify API key has credits
+- Check rate limits (10 requests/hour)
+
+**Tests failing:**
+- Run `npm run migrate` to ensure database is up to date
+- Clear test database: `rm prisma/test.db`
