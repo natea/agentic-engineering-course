@@ -16,7 +16,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Serve static files
-app.use(express.static(path.join(__dirname, '../public')));
+const publicPath = path.join(process.cwd(), 'public');
+console.log('Serving static files from:', publicPath);
+app.use(express.static(publicPath));
 
 // Routes
 app.use('/auth', authRoutes);
@@ -26,6 +28,25 @@ app.use('/api/sync', syncRouter);
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
+});
+
+// Test route
+app.get('/test', (req, res) => {
+  console.log('Test route hit');
+  res.send('Test works!');
+});
+
+// Serve index.html for root path
+app.get('/', (req, res) => {
+  console.log('Root path requested');
+  const indexPath = path.join(publicPath, 'index.html');
+  console.log('Sending file:', indexPath);
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error('Error sending file:', err);
+      res.status(500).send('Error loading page');
+    }
+  });
 });
 
 // Start server
