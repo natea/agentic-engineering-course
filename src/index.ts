@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
 import { blogRouter } from './routes/blog';
+import { syncRouter } from './routes/sync';
 
 // Load environment variables
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(express.json());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api/blog', blogRouter);
+app.use('/api/sync', syncRouter);
 
 // Health check
 app.get('/health', (req, res) => {
