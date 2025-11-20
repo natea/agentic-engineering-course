@@ -19,6 +19,7 @@ npx claude-flow@alpha
 ### 2. Project Initialization
 ```bash
 npx claude-flow@alpha init
+npx agentic-flow reasoningbank init
 ```
 
 ## Created Structure
@@ -66,14 +67,14 @@ npx claude-flow@alpha init
 
 **Usage:**
 ```bash
-# Check memory status
-npx claude-flow agent memory status
-
 # Initialize ReasoningBank
-npx claude-flow agent memory init
+npx claude-flow@alpha agent memory init
+
+# Check memory status
+npx claude-flow@alpha agent memory status
 
 # List stored memories
-npx claude-flow agent memory list
+npx claude-flow@alpha agent memory list
 ```
 
 **Current Status:**
