@@ -1,0 +1,8 @@
+node_modules
+.DS_Store
+chat.db
+chat.db-shm
+chat.db-wal
+dev.db
+.env
+dist
