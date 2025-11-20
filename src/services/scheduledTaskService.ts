@@ -60,8 +60,17 @@ class ScheduledTaskService {
             orderBy: { sentAt: 'asc' },
           });
 
+          // Filter out messages with no text (media messages, reactions, etc.)
+          const messagesWithText = messages.filter(msg => msg.text && msg.text.trim().length > 0);
+
+          // Skip thread if no text messages
+          if (messagesWithText.length === 0) {
+            console.log(`Skipping thread with no text messages`);
+            continue;
+          }
+
           // Generate summary
-          const aiContent = await aiSummaryService.generateBlogPost(messages);
+          const aiContent = await aiSummaryService.generateBlogPost(messagesWithText);
 
           // Create draft post
           await blogPostService.createDraftPost(

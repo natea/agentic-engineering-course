@@ -16,11 +16,26 @@ const manualOpLimiter = rateLimit({
 
 // POST /api/sync/trigger - Manually trigger sync
 router.post('/trigger', manualOpLimiter, async (req, res) => {
+  console.log('[Sync API] Manual sync triggered');
+  const startTime = Date.now();
+
   try {
     const result = await iMessageSyncService.syncNewMessages();
+    const duration = Date.now() - startTime;
+
+    console.log('[Sync API] Sync completed:', {
+      messagesAdded: result.messagesAdded,
+      errors: result.errors,
+      duration: `${duration}ms`
+    });
+
     res.json({ result });
   } catch (error) {
-    console.error('Error triggering sync:', error);
+    const duration = Date.now() - startTime;
+    console.error('[Sync API] Error triggering sync:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      duration: `${duration}ms`
+    });
     res.status(500).json({ error: 'Failed to trigger sync' });
   }
 });

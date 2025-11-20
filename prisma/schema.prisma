@@ -21,6 +21,7 @@ model Message {
   chatId            String
   senderId          String
   senderName        String?
+  isFromMe          Boolean       @default(false)
   text              String?
   attachments       String?
   sentAt            DateTime

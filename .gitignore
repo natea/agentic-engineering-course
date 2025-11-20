@@ -7,3 +7,6 @@ coverage/
 .DS_Store
 
 /src/generated/prisma
+chat.db
+chat.db-shm
+chat.db-wal

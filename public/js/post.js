@@ -31,15 +31,39 @@ async function loadPost() {
 
         <div id="messages-container" class="mt-3 d-none">
           <h3>Source Messages</h3>
-          ${post.messages.map(pm => `
-            <div class="card mb-2">
-              <div class="card-body">
-                <p class="card-text"><strong>${pm.message.senderName || pm.message.senderId}</strong></p>
-                <p class="card-text">${pm.message.text || '(no text)'}</p>
-                <p class="card-text"><small class="text-muted">${new Date(pm.message.sentAt).toLocaleString()}</small></p>
+          ${post.messages.map(pm => {
+            // Simple contact name mapping (you can expand this)
+            const contactNames = {
+              '+17323223521': 'Cesar',
+              '+16177848993': 'Adam',
+              // Add more contacts as needed
+            };
+
+            // Check if this message is from you
+            const isFromMe = pm.message.isFromMe;
+
+            // Determine sender name
+            let senderName;
+            if (isFromMe) {
+              senderName = 'You';
+            } else {
+              senderName = pm.message.senderName || contactNames[pm.message.senderId] || pm.message.senderId;
+            }
+
+            // Style messages differently based on sender
+            const messageClass = isFromMe ? 'bg-primary bg-opacity-10 border-primary' : 'bg-light';
+            const textAlign = isFromMe ? 'text-end' : 'text-start';
+
+            return `
+              <div class="card mb-2 ${messageClass}">
+                <div class="card-body ${textAlign}">
+                  <p class="card-text"><strong>${senderName}</strong></p>
+                  <p class="card-text">${pm.message.text || '(no text)'}</p>
+                  <p class="card-text"><small class="text-muted">${new Date(pm.message.sentAt).toLocaleString()}</small></p>
+                </div>
               </div>
-            </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
       </article>
     `;

@@ -26,13 +26,25 @@ async function loadDashboard() {
 // Manual sync
 document.getElementById('manual-sync-btn').addEventListener('click', async () => {
   try {
+    console.log('[Manual Sync] Button clicked, triggering sync...');
     showAlert('Syncing messages...', 'info');
+
+    const startTime = Date.now();
     const res = await fetch('/api/sync/trigger', { method: 'POST' });
     const data = await res.json();
+    const duration = Date.now() - startTime;
+
+    console.log('[Manual Sync] Sync completed:', {
+      messagesAdded: data.result.messagesAdded,
+      errors: data.result.errors,
+      lastSyncTime: data.result.lastSyncTime,
+      duration: `${duration}ms`
+    });
 
     showAlert(`Synced ${data.result.messagesAdded} messages`, 'success');
     loadDashboard();
   } catch (error) {
+    console.error('[Manual Sync] Sync failed:', error);
     showAlert('Sync failed', 'danger');
   }
 });
